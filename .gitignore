@@ -1,0 +1,29 @@
+# Node / Frontend
+frontend/node_modules/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python / Django / Backend
+*.pyc
+__pycache__/
+db.sqlite3
+.venv/
+env/
+venv/
+
+# VS Code
+.vscode/
+
+# Environment files
+*.env
+.env.local
+.env.production
+
+# Build / Dist Folders
+build/
+dist/
+media/
+backend/media/
+
