@@ -1,8 +1,8 @@
 import React from 'react'
 import { login } from '../api'
 
-export default function Login({ onSuccess }){
-  const [form, setForm] = React.useState({register_number:'', password:''})
+export default function Login({ onSuccess }) {
+  const [form, setForm] = React.useState({ register_number:'', password:'' })
   const [msg, setMsg] = React.useState('')
 
   function change(e){
@@ -11,13 +11,21 @@ export default function Login({ onSuccess }){
 
   async function submit(e){
     e.preventDefault()
-    const res = await login({register_number: form.register_number, password: form.password})
+    const res = await login({
+      register_number: form.register_number,
+      password: form.password
+    })
+
     if(res && res.access){
       localStorage.setItem('nn_access', res.access)
       localStorage.setItem('nn_refresh', res.refresh)
       localStorage.setItem('nn_role', res.role)
+
       setMsg('✓ Logged in successfully')
-      setTimeout(() => onSuccess(res.role), 1000)
+
+      setTimeout(() => {
+        if (onSuccess) onSuccess(res.role)
+      }, 800)
     } else {
       setMsg('✗ Login failed: ' + (res.detail || 'Invalid credentials'))
     }
